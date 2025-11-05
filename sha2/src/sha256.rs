@@ -46,6 +46,9 @@ cfg_if::cfg_if! {
     } else if #[cfg(all(target_arch = "wasm32", target_feature = "simd128"))] {
         mod wasm32_simd128;
         use wasm32_simd128::compress;
+    } else if #[cfg(all(target_os = "zkvm", target_vendor = "succinct", target_arch = "riscv32"))] {
+        mod succinct;
+        use succinct::compress;
     } else {
         mod soft;
 
