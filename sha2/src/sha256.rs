@@ -52,6 +52,9 @@ cfg_if::cfg_if! {
     } else if #[cfg(all(target_os = "zkvm", target_vendor = "risc0", target_arch = "riscv32"))] {
         mod risc0;
         use risc0::compress;
+    } else if #[cfg(all(target_os = "zkvm", target_vendor = "zkm", target_arch = "mips"))] {
+        mod zkm;
+        use zkm::compress;
     } else {
         mod soft;
 
