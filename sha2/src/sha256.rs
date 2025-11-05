@@ -49,9 +49,18 @@ cfg_if::cfg_if! {
     } else if #[cfg(all(target_os = "zkvm", target_vendor = "succinct", target_arch = "riscv32"))] {
         mod succinct;
         use succinct::compress;
-    } else if #[cfg(all(target_os = "zkvm", target_vendor = "risc0", target_arch = "riscv32"))] {
+    } else if #[cfg(all(target_os = "zkvm", target_vendor = "risc0", target_arch = "riscv32", feature = "zkvm-pico"))] {
+        // Brevis Pico target string is also `riscv32im-risc0-zkvm-elf`, so we use an additional feature
+        // to distinguish pico.
+        // ref: https://github.com/brevis-network/pico/blob/main/sdk/cli/src/build/build.rs#L82
+        mod pico;
+        use pico::compress;
+    } else if #[cfg(all(target_os = "zkvm", target_vendor = "risc0", target_arch = "riscv32", feature = "zkvm-risc0"))] {
+        // zkvm-r0vm
         mod risc0;
         use risc0::compress;
+    } else if #[cfg(all(target_os = "zkvm", target_vendor = "risc0", not(any(feature = "zkvm-pico", feature = "zkvm-risc0"))))] {
+        compile_error!("please select one of the features from [`zkvm-pico`, `zkvm-risc0`]");
     } else if #[cfg(all(target_os = "zkvm", target_vendor = "zkm", target_arch = "mips"))] {
         mod zkm;
         use zkm::compress;

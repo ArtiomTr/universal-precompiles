@@ -31,6 +31,8 @@ default = ["alloc", "oid"]
 alloc = ["digest/alloc"]
 zeroize = ["digest/zeroize"]
 oid = ["digest/oid"]
+zkvm-risc0 = [] # For r0vm
+zkvm-pico = []  # For Brevis pico zkvm compilation
 
 [lints.rust.unexpected_cfgs]
 level = "warn"
