@@ -22,6 +22,9 @@ cfg-if = "1"
 [target.'cfg(any(target_arch = "aarch64", target_arch = "x86_64", target_arch = "x86"))'.dependencies]
 cpufeatures = "0.3"
 
+[target.'cfg(all(target_os = "zkvm", target_vendor = "zisk"))'.dependencies]
+ziskos = { git = "https://github.com/0xPolygonHermez/zisk.git", tag = "v0.13.0" }
+
 [dev-dependencies]
 digest = { version = "0.11", features = ["dev"] }
 hex-literal = "1"
@@ -42,6 +45,7 @@ check-cfg = [
     'cfg(sha2_512_backend, values("aarch64-sha3", "soft", "riscv-zknh", "x86-avx2"))',
     'cfg(sha2_backend_soft, values("compact"))',
     'cfg(sha2_backend_riscv_zknh, values("compact"))',
+    'cfg(target_vendor, values("succinct", "risc0", "zisk", "zkm"))'
 ]
 
 [package.metadata.docs.rs]
