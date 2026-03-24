@@ -27,7 +27,8 @@ cfg_if::cfg_if! {
         mod succinct;
         use succinct::compress;
     } else if #[cfg(all(target_os = "zkvm", target_vendor = "zisk"))] {
-        use ziskos::zisklib::sha256f_compress as compress;
+        mod zisk;
+        use zisk::compress;
     } else if #[cfg(all(target_os = "zkvm", target_vendor = "risc0", target_arch = "riscv32", feature = "zkvm-pico"))] {
         // Brevis Pico target string is also `riscv32im-risc0-zkvm-elf`, so we use an additional feature
         // to distinguish pico.
