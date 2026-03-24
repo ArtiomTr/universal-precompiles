@@ -44,7 +44,7 @@ zkm-lib = { git = "https://github.com/ProjectZKM/Ziren.git", default-features = 
 
 # For Zisk
 [target.'cfg(all(target_os = "zkvm", target_vendor = "zisk"))'.dependencies]
-ziskos = { git = "https://github.com/0xPolygonHermez/zisk.git", tag = "v0.13.0" }
+ziskos = { git = "https://github.com/0xPolygonHermez/zisk.git", tag = "v0.16.1" }
 
 [dev-dependencies]
 csv = ">= 1.0, < 1.2" # csv 1.2 has MSRV 1.60
