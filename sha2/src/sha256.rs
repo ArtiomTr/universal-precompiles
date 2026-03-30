@@ -23,7 +23,7 @@ cfg_if::cfg_if! {
     } else if #[cfg(all(feature = "loongarch64_asm", target_arch = "loongarch64"))] {
         mod loongarch64_asm;
         use loongarch64_asm::compress;
-    } else if #[cfg(all(target_os = "zkvm", target_vendor = "succinct", target_arch = "riscv32"))] {
+    } else if #[cfg(all(target_os = "zkvm", target_vendor = "succinct"))] {
         mod succinct;
         use succinct::compress;
     } else if #[cfg(all(target_os = "zkvm", target_vendor = "zisk"))] {
